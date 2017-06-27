@@ -117,6 +117,7 @@ public class PushPlugin extends CordovaPlugin implements PushConstants {
                         editor.putBoolean(CLEAR_BADGE, clearBadge);
                         editor.putBoolean(CLEAR_NOTIFICATIONS, jo.optBoolean(CLEAR_NOTIFICATIONS, true));
                         editor.putBoolean(FORCE_SHOW, jo.optBoolean(FORCE_SHOW, false));
+                        editor.putBoolean(ONESIGNAL, jo.optBoolean(ONESIGNAL, false));
                         editor.putString(SENDER_ID, senderID);
                         editor.commit();
 

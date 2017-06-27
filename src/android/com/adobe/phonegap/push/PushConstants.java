@@ -5,7 +5,7 @@ public interface PushConstants {
     public static final String REGISTRATION_ID = "registrationId";
     public static final String FOREGROUND = "foreground";
     public static final String TITLE = "title";
-    public static final String NOT_ID = "collapse_key";
+    public static final String NOT_ID = "notId";
     public static final String PUSH_BUNDLE = "pushBundle";
     public static final String ICON = "icon";
     public static final String ICON_COLOR = "iconColor";
@@ -33,7 +33,7 @@ public interface PushConstants {
     public static final String SOUNDNAME = "soundname";
     public static final String LED_COLOR = "ledColor";
     public static final String PRIORITY = "priority";
-    public static final String IMAGE = "licon";
+    public static final String IMAGE = "image";
     public static final String STYLE_INBOX = "inbox";
     public static final String STYLE_PICTURE = "picture";
     public static final String STYLE_TEXT = "text";
@@ -70,4 +70,8 @@ public interface PushConstants {
     public static final String MP_MESSAGE = "mp_message";
     public static final String START_IN_BACKGROUND = "cdvStartInBackground";
     public static final String FORCE_START = "force-start";
+    public static final String ONESIGNAL = "onesignal";
+    public static final String ONESIGNAL_LARGE_ICON = "licon";
+    public static final String ONESIGNAL_CUSTOM = "custom";
+    public static final String ONESIGNAL_CUSTOM_ID = "i";
 }
