@@ -195,9 +195,17 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
      * Sanitize Onesignal keys into canonical keys
      */
     private Bundle sanitizeOnesignal(Context context, Bundle extras) {
+        Log.d(LOG_TAG, "received : " + extras);
         Log.d(LOG_TAG, "sanitize onesignal");
+        
         Iterator<String> it = extras.keySet().iterator();
         Bundle sanitizedExtras = new Bundle();
+
+        int time = (int) (new Date().getTime() / 1000);
+        String notId = Integer.toString(time);
+
+        Log.d(LOG_TAG, "First, sanitize NOT_ID with timestamp : " + notId);
+        sanitizedExtras.putString(NOT_ID, notId);
 
         while (it.hasNext()) {
             String key = it.next();
@@ -215,14 +223,31 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 continue;
             }
 
+            if (key.equals(ONESIGNAL_GROUP_KEY)) {
+                Log.d(LOG_TAG, "sanitizing " + key + "..");
+                sanitizedKey = NOT_ID;
+
+                Log.d(LOG_TAG, "..replacing with " + sanitizedKey + " key");
+                replaceKey(context, key, sanitizedKey, extras, sanitizedExtras);
+
+                Log.d(LOG_TAG, "..adding inboxing stacking style in order to group notifications with same ONE_SIGNAL_GROUP_KEY");
+                sanitizedExtras.putString(STYLE, STYLE_INBOX);
+
+                continue;
+            }
+
+            if (key.equals(ONESIGNAL_GROUP_MESSAGE)) {
+                Log.d(LOG_TAG, "sanitizing " + key + "..");
+                sanitizedKey = SUMMARY_TEXT;
+
+                Log.d(LOG_TAG, "..replacing with " + sanitizedKey + " key");
+                replaceKey(context, key, sanitizedKey, extras, sanitizedExtras);
+
+                continue;
+            }
+
             replaceKey(context, key, sanitizedKey, extras, sanitizedExtras);
         }
-
-        int time = (int) (new Date().getTime() / 1000);
-        String notId = Integer.toString(time);
-
-        Log.d(LOG_TAG, "Always sanitize NOT_ID with timestamp : " + notId);
-        sanitizedExtras.putString(NOT_ID, notId);
 
         return sanitizedExtras;
     }

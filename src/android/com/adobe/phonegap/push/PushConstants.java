@@ -72,6 +72,8 @@ public interface PushConstants {
     public static final String FORCE_START = "force-start";
     public static final String ONESIGNAL = "onesignal";
     public static final String ONESIGNAL_LARGE_ICON = "licon";
+    public static final String ONESIGNAL_GROUP_KEY = "grp";
+    public static final String ONESIGNAL_GROUP_MESSAGE = "grp_msg";
     public static final String ONESIGNAL_CUSTOM = "custom";
     public static final String ONESIGNAL_CUSTOM_ID = "i";
 }
